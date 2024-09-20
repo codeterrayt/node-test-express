@@ -1,0 +1,42 @@
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt install nodejs
+sudo apt install npm
+git clone https://github.com/codeterrayt/node-test-express.git
+sudo npm install -g pnpm
+sudo apt install apache2
+
+sudo ufw app list
+sudo ufw allow in "Apache"
+
+sudo ufw status
+sudo ufw enable
+
+
+sudo apt install mysql-server
+sudo mysql
+
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
+
+
+sudo npm install pm2 -g
+
+
+sudo apt install php libapache2-mod-php php-mysql
+
+sudo nano /etc/apache2/mods-enabled/dir.conf
+
+sudo apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
+
+mysql -u root -p
+
+UNINSTALL COMPONENT "file://component_validate_password";
+
+sudo apt install phpMyAdmin
+
+sudo phpenmod mbstring
+sudo systemctl restart apache2
+
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'Password@123';
