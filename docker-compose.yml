@@ -1,19 +1,44 @@
 services:
+  node:
+    image: node
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+    command: bash -c "rm -rf node_modules && npm install -g pnpm && pnpm install && node index.js"
+    ports:
+      - ":3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: root
+      DATABASE_PASSWORD: ""
+      DATABASE_NAME: my_database
+    networks:
+      - my_network
 
   db:
-    image: mysql:8.1.0 
+    image: mysql:8.1.0
     environment:
       MYSQL_ROOT_PASSWORD: ""
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: my_database
-    ports: 
-        - "3306:3306"    
+    # ports:
+      # - "3306:3306"
+    networks:
+      - my_network
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin  
+    image: phpmyadmin/phpmyadmin
     ports:
-      - "8080:80"
+      - ":80"
     depends_on:
       - db
     environment:
       PMA_HOST: db
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
