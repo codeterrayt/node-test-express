@@ -11,10 +11,10 @@ app.get("/test", (req, res) => {
 
     // MySQL connection
     const db = mysql.createConnection({
-        host: 'MYSQL_DB_8.1.0_7f82e2f378', // Replace with your MySQL container name or host
-        user: 'root',
-        password: 'root',
-        database: process.env.DATABASE_NAME || 'my_database'
+        host: process.env.DATABASE_HOST || 'db',
+    user: process.env.DATABASE_USER || 'root',
+    password: process.env.DATABASE_PASSWORD || '',
+    database: process.env.DATABASE_NAME || 'my_database'
     });
 
     // Try to connect to MySQL
