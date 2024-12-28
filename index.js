@@ -7,32 +7,52 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
-// MySQL connection
-const db = mysql.createConnection({
-    host: process.env.DATABASE_HOST || 'db',
-    user: process.env.DATABASE_USER || 'root',
-    password: process.env.DATABASE_PASSWORD || '',
-    database: process.env.DATABASE_NAME || 'my_database'
-});
+app.get("/test", (req, res) => {
 
-// Connect to MySQL and create table if not exists
-db.connect((err) => {
-    if (err) {
-        console.error('Database connection failed: ' + err.stack);
-        return;
-    }
-    console.log('Connected to MySQL');
+    // MySQL connection
+    const db = mysql.createConnection({
+        host: 'MYSQL_DB_8.1.0_7f82e2f378', // Replace with your MySQL container name or host
+        user: 'root',
+        password: 'root',
+        database: process.env.DATABASE_NAME || 'my_database'
+    });
 
-    const createTableQuery = `
-        CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL
-        )`;
-    
-    db.query(createTableQuery, (err) => {
-        if (err) throw err;
-        console.log("Table 'users' ensured.");
+    // Try to connect to MySQL
+    db.connect((err) => {
+        if (err) {
+            return res.status(500).json({
+                message: 'Database connection failed',
+                error: err.stack,
+            });
+        }
+
+        // Once connected, you can ensure the table exists
+        const createTableQuery = `
+            CREATE TABLE IF NOT EXISTS users (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(255) NOT NULL,
+                email VARCHAR(255) NOT NULL
+            )`;
+
+        db.query(createTableQuery, (err) => {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error creating table',
+                    error: err,
+                });
+            }
+            console.log("Table 'users' ensured.");
+        });
+
+        // Send back success response with env variables
+        return res.status(200).json({
+            message: 'Connected to MySQL',
+            env_variables: {
+                DATABASE_USER: process.env.DATABASE_USER || 'root',
+                DATABASE_PASSWORD: process.env.DATABASE_PASSWORD || 'Not Set',
+                DATABASE_NAME: process.env.DATABASE_NAME || 'my_database'
+            }
+        });
     });
 });
 
