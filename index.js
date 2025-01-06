@@ -63,7 +63,7 @@ app.get('/', (req, res) => {
 
     return res.send("thi");
     
-    // const getUsersQuery = 'SELECT * FROM users';
+    // const getUsersQuery = 'SELECT * FROM users'; s
     // db.query(getUsersQuery, (err, results) => {
     //     if (err) throw err;
     //     res.render('index', { users: results });
