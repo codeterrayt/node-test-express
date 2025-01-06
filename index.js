@@ -8,6 +8,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 
+// Home page route to display data s
+app.get('/', (req, res) => {
+
+    return res.send("2");
+    
+    // const getUsersQuery = 'SELECT * FROM users'; s
+    // db.query(getUsersQuery, (err, results) => {
+    //     if (err) throw err;
+    //     res.render('index', { users: results });
+    // });
+});
+
+
     // MySQL connection
     // const db = mysql.createConnection({
     //     host: process.env.DATABASE_HOST || 'db',
@@ -56,18 +69,6 @@ app.get("/test", (req, res) => {
             }
         });
     });
-});
-
-// Home page route to display data s
-app.get('/', (req, res) => {
-
-    return res.send("this");
-    
-    // const getUsersQuery = 'SELECT * FROM users'; s
-    // db.query(getUsersQuery, (err, results) => {
-    //     if (err) throw err;
-    //     res.render('index', { users: results });
-    // });
 });
 
 // Post route to insert data from form
