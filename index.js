@@ -7,7 +7,6 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
-app.get("/test", (req, res) => {
 
     // MySQL connection
     const db = mysql.createConnection({
@@ -16,6 +15,9 @@ app.get("/test", (req, res) => {
     password: process.env.DATABASE_PASSWORD || '',
     database: process.env.DATABASE_NAME || 'my_database'
     });
+
+
+app.get("/test", (req, res) => {
 
     // Try to connect to MySQL
     db.connect((err) => {
