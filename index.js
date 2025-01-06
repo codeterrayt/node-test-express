@@ -58,7 +58,7 @@ app.get("/test", (req, res) => {
     });
 });
 
-// Home page route to display data
+// Home page route to display data s
 app.get('/', (req, res) => {
 
     return res.send("hi");
