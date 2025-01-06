@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 // Home page route to display data s
 app.get('/', (req, res) => {
 
-    return res.send("2");
+    return res.send("22");
     
     // const getUsersQuery = 'SELECT * FROM users'; s
     // db.query(getUsersQuery, (err, results) => {
