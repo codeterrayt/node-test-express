@@ -61,7 +61,7 @@ app.get("/test", (req, res) => {
 // Home page route to display data s
 app.get('/', (req, res) => {
 
-    return res.send("hi2");
+    return res.send("hi");
     
     // const getUsersQuery = 'SELECT * FROM users';
     // db.query(getUsersQuery, (err, results) => {
