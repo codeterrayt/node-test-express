@@ -9,12 +9,12 @@ app.set('view engine', 'ejs');
 
 
     // MySQL connection
-    const db = mysql.createConnection({
-        host: process.env.DATABASE_HOST || 'db',
-    user: process.env.DATABASE_USER || 'root',
-    password: process.env.DATABASE_PASSWORD || '',
-    database: process.env.DATABASE_NAME || 'my_database'
-    });
+    // const db = mysql.createConnection({
+    //     host: process.env.DATABASE_HOST || 'db',
+    // user: process.env.DATABASE_USER || 'root',
+    // password: process.env.DATABASE_PASSWORD || '',
+    // database: process.env.DATABASE_NAME || 'my_database'
+    // });
 
 
 app.get("/test", (req, res) => {
@@ -60,11 +60,14 @@ app.get("/test", (req, res) => {
 
 // Home page route to display data
 app.get('/', (req, res) => {
-    const getUsersQuery = 'SELECT * FROM users';
-    db.query(getUsersQuery, (err, results) => {
-        if (err) throw err;
-        res.render('index', { users: results });
-    });
+
+    return res.send("hi");
+    
+    // const getUsersQuery = 'SELECT * FROM users';
+    // db.query(getUsersQuery, (err, results) => {
+    //     if (err) throw err;
+    //     res.render('index', { users: results });
+    // });
 });
 
 // Post route to insert data from form
