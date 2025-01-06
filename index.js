@@ -46,7 +46,7 @@ app.get("/test", (req, res) => {
             console.log("Table 'users' ensured.");
         });
 
-        // Send back success response with env variables
+        // Send back success response with env variables 2
         return res.status(200).json({
             message: 'Connected to MySQL',
             env_variables: {
