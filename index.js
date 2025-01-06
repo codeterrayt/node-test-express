@@ -61,7 +61,7 @@ app.get("/test", (req, res) => {
 // Home page route to display data s
 app.get('/', (req, res) => {
 
-    return res.send("this is ci cd pipeline testing222");
+    return res.send("this is ci cd pipeline testing2222");
     
     // const getUsersQuery = 'SELECT * FROM users';
     // db.query(getUsersQuery, (err, results) => {
