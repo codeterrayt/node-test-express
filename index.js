@@ -11,23 +11,24 @@ app.set('view engine', 'ejs');
 // Home page route to display data s
 app.get('/', (req, res) => {
 
-    return res.send("rohan prajapati2");
+    // return res.send("rohan prajapati2");
+
     
-    // const getUsersQuery = 'SELECT * FROM users'; s
-    // db.query(getUsersQuery, (err, results) => {
-    //     if (err) throw err;
-    //     res.render('index', { users: results });
-    // });
+    const db = mysql.createConnection({
+        host: process.env.MYSQL_DB_HOST || 'MYSQL_DB_8.1.0_b55dd8b265',
+        user: process.env.MYSQL_USER || 'root',
+        password: process.env.MYSQL_PASSWORD || 'root',
+        database: process.env.MYSQL_DATABASE || 'QD'
+    }); 
+ 
+    
+    const getUsersQuery = 'SELECT * FROM users'; 
+    db.query(getUsersQuery, (err, results) => {
+        if (err) throw err;
+        res.render('index', { users: results });
+    });
 });
 
-
-    // MySQL connection
-    // const db = mysql.createConnection({
-    //     host: process.env.DATABASE_HOST || 'db',
-    // user: process.env.DATABASE_USER || 'root',
-    // password: process.env.DATABASE_PASSWORD || '',
-    // database: process.env.DATABASE_NAME || 'my_database'
-    // }); 2
 
 
 app.get("/test", (req, res) => {
@@ -64,8 +65,8 @@ app.get("/test", (req, res) => {
             message: 'Connected to MySQL',
             env_variables: {
                 DATABASE_USER: process.env.DATABASE_USER || 'root',
-                DATABASE_PASSWORD: process.env.DATABASE_PASSWORD || 'Not Set',
-                DATABASE_NAME: process.env.DATABASE_NAME || 'my_database'
+                DATABASE_PASSWORD: process.env.DATABASE_PASSWORD || 'root',
+                DATABASE_NAME: process.env.DATABASE_NAME || 'QD'
             }
         });
     });
