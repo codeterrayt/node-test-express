@@ -11,22 +11,22 @@ app.set('view engine', 'ejs');
 // Home page route to display data s
 app.get('/', (req, res) => {
 
-    // return res.send("rohan prajapati2");
+    return res.send("this is from github directly CICD update , this update can be from the vs code too");
 
     
-    const db = mysql.createConnection({
-        host: process.env.MYSQL_DB_HOST || 'MYSQL_DB_8.1.0_b55dd8b265',
-        user: process.env.MYSQL_USER || 'root',
-        password: process.env.MYSQL_PASSWORD || 'root',
-        database: process.env.MYSQL_DATABASE || 'QD'
-    }); 
+    // const db = mysql.createConnection({
+    //     host: process.env.MYSQL_DB_HOST || 'MYSQL_DB_8.1.0_b55dd8b265',
+    //     user: process.env.MYSQL_USER || 'root',
+    //     password: process.env.MYSQL_PASSWORD || 'root',
+    //     database: process.env.MYSQL_DATABASE || 'QD'
+    // }); 
  
     
-    const getUsersQuery = 'SELECT * FROM users'; 
-    db.query(getUsersQuery, (err, results) => {
-        if (err) throw err;
-        res.render('index', { users: results });
-    });
+    // const getUsersQuery = 'SELECT * FROM users'; 
+    // db.query(getUsersQuery, (err, results) => {
+    //     if (err) throw err;
+    //     res.render('index', { users: results });
+    // });
 });
 
 
