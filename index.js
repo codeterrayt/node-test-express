@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 // Home page route to display data s
 app.get('/', (req, res) => {
 
-    return res.send("this is from github directly CICD update , this update can be from the vs code too");
+    return res.send("see the cicd is working well hehe");
 
     
     // const db = mysql.createConnection({
